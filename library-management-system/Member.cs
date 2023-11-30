@@ -2,10 +2,10 @@ namespace library_management_system;
 
 public class Member
 {
-    private string MembershipNumber { get; }
-    private string FirstName { get; set; }
-    private string LastName { get; set; }
-    private List<Book> BorrowedBookList { get; set; }
+    internal string MembershipNumber { get; }
+    internal string FirstName { get; set; }
+    internal string LastName { get; set; }
+    internal List<Book> BorrowedBookList { get; set; }
 
     public Member(string firstName, string lastName, List<Book> borrowedBookList)
     {
