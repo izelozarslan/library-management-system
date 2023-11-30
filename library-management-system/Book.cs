@@ -8,12 +8,15 @@ public class Book
     internal string PublicationYear { get; set; }
     internal Status Status { get; set; }
 
-    public Book(string name, string author, string publicationYear, Status status)
+    public Book(string id, string name, string author, string publicationYear, Status status)
     {
+        Id = id;
         Name = name;
         Author = author;
         PublicationYear = publicationYear;
         Status = status;
     }
+    
+    public Book(){}
     
 }
