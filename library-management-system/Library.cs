@@ -2,21 +2,16 @@ namespace library_management_system;
 
 public class Library
 {
-    //Kitap ekleme, silme, ödünç verme ve iade etme 
+    internal List<Member> Members { get; set; }
+    internal List<Book> Books { get; set; }
 
-    private void add()
+    public Library(List<Member> members, List<Book> books)
     {
-        
+        Members = members;
+        Books = books;
     }
 
-    private void delete()
-    {
-        
-    }
-    
-    private void lend(){}
-    
-    private void giveBack()
+    public Library()
     {
         
     }
