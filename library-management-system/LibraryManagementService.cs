@@ -2,45 +2,49 @@ namespace library_management_system;
 
 public class LibraryManagementService
 {
-    // private List<Book> _bookList = new ();
-
     private Library _library = new();
-    //Kitap ekleme, silme, ödünç verme ve iade etme 
 
-    private string Add(Book book)
+    internal void Add(Book book)
     {
         _library.Books.Add(book);
-        //_bookList.Add(book);
-        return "Kitap eklendi.";
+        Console.WriteLine("Kitap eklendi, kitap sayısı : " + _library.Books.Count);
     }
 
-    private string Delete(Book book)
+    internal void Delete(Book book)
     {
+        Console.WriteLine("Kütühanedeki kitap sayısı : " + _library.Books.Count);
         _library.Books.Remove(book);
-        //_bookList.Remove(book);
-        return "Kitap silindi";
+        Console.WriteLine("Kitap silindi, kütüphanedeki kitap sayısı : " + _library.Books.Count);
     }
 
-    private string Lend(Book book, Member member)
+    internal void Lend(Book book, Member member)
     {
         if (book.Status == Status.Active)
         {
             book.Status = Status.Passive;
             _library.Books.Remove(book);
             member.BorrowedBookList.Add(book);
-            return "Kitap ödünç verildi.";
+            Console.WriteLine("Kitap ödünç verildi. Aktiflik durumu : " + book.Status);
         }
         else
         {
-            return "Bu kitap şu anda başka bir üyede!";
+            Console.WriteLine("Bu kitap şu anda başka bir üyede : " + book.Name);
         }
     }
 
-    private string GiveBack(Book book, Member member)
+    internal void GiveBack(Book book, Member member)
     {
         book.Status = Status.Active;
         _library.Books.Add(book);
+        Console.WriteLine("Üyenin sahip olduğu kitap sayısı: " + member.BorrowedBookList.Count);
         member.BorrowedBookList.Remove(book);
-        return "Kitap iade edildi. Teşekkür ederiz!";
+        Console.WriteLine(
+            $"Kitap iade edildi. Teşekkür ederiz : {book.Name} , üyenin sahip olduğu kitap sayısı : {member.BorrowedBookList.Count}");
+    }
+
+    internal void AddMemberToLibrary(Library library, Member member)
+    {
+        library.Members.Add(member);
+        Console.WriteLine("Üye eklendi." + member.FirstName);
     }
 }
