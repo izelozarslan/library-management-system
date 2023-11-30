@@ -20,6 +20,8 @@ member2.MembershipNumber = "002";
 member2.FirstName = "Ahmet";
 member2.LastName = "Okur";
 
+List<Member> members = new(){member,member2};
+
 //kütüphaneye üye ekle
 service.AddMemberToLibrary(_library, member);
 service.AddMemberToLibrary(_library, member2);
@@ -34,4 +36,7 @@ service.GiveBack(secondBook, member2);
 
 //kitap sil
 service.Delete(secondBook);
+
+//üyeleri yazdır
+service.Print(_library, members);
 

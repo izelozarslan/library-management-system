@@ -1,6 +1,6 @@
 namespace library_management_system;
 
-public class LibraryManagementService
+public class LibraryManagementService : IPrintable
 {
     private Library _library = new();
 
@@ -22,8 +22,8 @@ public class LibraryManagementService
         if (book.Status == Status.Active)
         {
             book.Status = Status.Passive;
-            _library.Books.Remove(book);
             member.BorrowedBookList.Add(book);
+            _library.Books.Remove(book);
             Console.WriteLine("Kitap ödünç verildi. Aktiflik durumu : " + book.Status);
         }
         else
@@ -35,9 +35,9 @@ public class LibraryManagementService
     internal void GiveBack(Book book, Member member)
     {
         book.Status = Status.Active;
-        _library.Books.Add(book);
         Console.WriteLine("Üyenin sahip olduğu kitap sayısı: " + member.BorrowedBookList.Count);
         member.BorrowedBookList.Remove(book);
+        _library.Books.Add(book);
         Console.WriteLine(
             $"Kitap iade edildi. Teşekkür ederiz : {book.Name} , üyenin sahip olduğu kitap sayısı : {member.BorrowedBookList.Count}");
     }
@@ -46,5 +46,16 @@ public class LibraryManagementService
     {
         library.Members.Add(member);
         Console.WriteLine("Üye eklendi." + member.FirstName);
+    }
+
+    public void Print(Library library, List<Member> members)
+    {
+        
+        foreach (var member in library.Members)
+        {
+            members.Add(member);
+            Console.WriteLine($"Üye Adı: {member.FirstName} {member.LastName}");
+        }
+
     }
 }
