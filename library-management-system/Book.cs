@@ -1,11 +1,8 @@
 namespace library_management_system;
 
-public class Book
+public class Book : LiteraryWork
 {
     internal string Id { get; set; }
-    internal string Name { get; set; }
-    internal string Author { get; set; }
-    internal string PublicationYear { get; set; }
     internal Status Status { get; set; }
 
     public Book(string id, string name, string author, string publicationYear, Status status)
